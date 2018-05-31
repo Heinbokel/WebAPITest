@@ -27,7 +27,7 @@ namespace WebAPITest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<ProductDbContext>(option => option.UseSqlite(@"Data Source=Data/ProductDb.db;"));
+            services.AddDbContext<ProductDbContext>(option => option.UseSqlite(@"Data Source=ProductDb.db;"));
             services.AddScoped<IProduct, ProductRepository>();
         }
 
@@ -41,7 +41,9 @@ namespace WebAPITest
 
             app.UseMvc();
 
+
             productDbContext.Database.EnsureCreated();//Checks if database is created. If not, creates it.
+            productDbContext.Database.Migrate();
         }
     }
 }

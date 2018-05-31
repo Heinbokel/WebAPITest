@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebAPITest.Data;
+using WebAPITest.Services;
 
 namespace WebAPITest
 {
@@ -27,6 +28,7 @@ namespace WebAPITest
         {
             services.AddMvc();
             services.AddDbContext<ProductDbContext>(option => option.UseSqlite(@"Data Source=Data/ProductDb.db;"));
+            services.AddScoped<IProduct, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

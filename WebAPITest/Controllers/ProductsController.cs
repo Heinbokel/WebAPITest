@@ -33,7 +33,7 @@ namespace WebAPITest.Controllers
         public IActionResult Get(int id)
         {
             Product productInDB = _context.Products.SingleOrDefault(c => c.Id == id);
-            if(id != null && productInDB.Id == id){
+            if(productInDB.Id == id){
                 return Ok(productInDB);
             }
             return NotFound("Could not find product with that id.");
